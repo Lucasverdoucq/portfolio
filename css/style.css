@@ -1,8 +1,4 @@
-/* =========================================
-   1. VARIABLES & THÈMES
-   ========================================= */
-
-/* Palette Dark (Par défaut) */
+/* 1. VARIABLES & THÈMES */
 body {
     --app-background: #0D141F;
     --Subtle-Background: #111A27;
@@ -19,8 +15,6 @@ body {
     
     --transition: all 0.3s ease;
 }
-
-/* Palette Light */
 body.light-theme {
     --app-background: #F9FEFF;
     --Subtle-Background: #F1FAFD;
@@ -35,49 +29,33 @@ body.light-theme {
     --Low-contrast-text: #00749E;
     --Hight-contrast-text: #1D3E56;
 }
-
-/* =========================================
-   2. STYLES DE BASE (RESET)
-   ========================================= */
-
-/* ... Dans la section 2. STYLES DE BASE (RESET) ... */
-
+/* 2. STYLES DE BASE */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
     font-family: 'Della Respira', serif; 
     line-height: 1.6;
     background-color: var(--app-background);
     color: var(--Hight-contrast-text);
-    transition: background-color var(--transition), color var(--transition);
+    transition: var(--transition);
 }
-
 h1, h2, h3 {
     font-family: 'Rokkitt', serif; 
     color: var(--Solid-background);
     margin-bottom: 1rem;
-    font-weight: 700; /* On s'assure que les titres soient bien en gras */
+    font-weight: 700;
 }
-
-/* Espacement global des sections pour remplacer les <p>.</p> */
 section {
     padding: 60px 5%;
-    min-height: 50vh; /* Garantit que chaque section prend au moins la moitié de l'écran */
+    min-height: 50vh;
 }
-
-/* Permet au scroll vers les ancres de ne pas être caché par le header */
 section[id] {
     scroll-margin-top: 80px; 
 }
-
-/* =========================================
-   3. HEADER & NAVIGATION
-   ========================================= */
-
+/* 3. HEADER & NAVIGATION */
 header {
     background: var(--Subtle-Background);
     padding: 1rem 5%;
@@ -87,55 +65,42 @@ header {
     border-bottom: 1px solid var(--Subtle-borders-an-separators);
     transition: background-color var(--transition), border-color var(--transition);
 }
-
 .header-content {
     display: flex;
     align-items: center;
     justify-content: flex-end; 
     gap: 20px;
 }
-
 #back-to-top-home {
-    margin-right: auto; /* Pousse tout le reste vers la droite */
+    margin-right: auto;
     text-decoration: none;
     font-size: 1.5rem;
     transition: var(--transition);
     padding: 5px;
 }
-
 #back-to-top-home:hover {
     transform: scale(1.2);
 }
-
 nav ul {
     display: flex;
     list-style: none;
 }
-
 nav ul li {
     margin-left: 20px;
 }
-
 nav ul li a {
     color: var(--Low-contrast-text);
     text-decoration: none;
     transition: var(--transition);
 }
-
 nav ul li a:hover {
     color: var(--Solid-background);
 }
-
 @media (max-width: 600px) {
     .header-content { flex-wrap: wrap; }
     nav ul { flex-wrap: wrap; justify-content: center; }
 }
-
-/* =========================================
-   4. COMPOSANTS (Boutons, Cartes, Icônes)
-   ========================================= */
-
-/* Bouton Changement de Thème */
+/* 4. COMPOSANTS */
 #theme-toggle {
     background: none;
     border: 1px solid var(--Subtle-borders-an-separators);
@@ -149,17 +114,17 @@ nav ul li a:hover {
     align-items: center;
     justify-content: center;
 }
-
 #theme-toggle:hover {
     background-color: var(--UI-element-background);
     border-color: var(--UI-element-border-focus-rings);
     color: var(--Solid-background);
 }
-
-body.light-theme .icon-moon { display: none !important; }
-body.light-theme .icon-sun { display: block !important; }
-
-/* Cartes de Projets */
+body.light-theme .icon-moon {
+    display: none !important;
+}
+body.light-theme .icon-sun {
+    display: block !important;
+}
 article {
     background: var(--Subtle-Background);
     border: 1px solid var(--Subtle-borders-an-separators);
@@ -167,20 +132,16 @@ article {
     padding: 1.5rem;
     transition: var(--transition);
 }
-
 article:hover {
     background: var(--UI-element-background);
     border-color: var(--UI-element-border-focus-rings);
     transform: translateY(-5px);
 }
-
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
 }
-
-/* Formulaires et Boutons standards */
 button[type="submit"] {
     background-color: var(--Solid-background);
     color: var(--app-background);
@@ -192,52 +153,37 @@ button[type="submit"] {
     transition: var(--transition);
     margin-top: 15px;
 }
-
 button[type="submit"]:hover {
     background-color: var(--Hovered-solid-background);
 }
-
-/* =========================================
-   5. ANIMATIONS (JavaScript)
-   ========================================= */
-
+/* 5. ANIMATIONS */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s ease-out;
 }
-
 .reveal-visible {
     opacity: 1;
     transform: translateY(0);
 }
-
-/* =========================================
-   6. SECTION CONTACT (Cadre et Formulaire)
-   ========================================= */
-
-/* On centre le contenu de la section contact */
+/* 6. SECTION CONTACT */
 #contact {
     display: flex;
     flex-direction: column;
     align-items: center; 
 }
-
-/* Le cadre autour du formulaire */
 #contact form {
     background: var(--Subtle-Background);
     border: 1px solid var(--Subtle-borders-an-separators);
     border-radius: 12px;
     padding: 2.5rem;
     width: 100%;
-    max-width: 600px; /* Empêche le cadre d'être trop large sur un grand écran */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Petite ombre pour faire ressortir le cadre */
+    max-width: 600px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Crée un espace régulier entre chaque champ */
+    gap: 15px;
 }
-
-/* On en profite pour styliser les champs de texte pour qu'ils collent au thème */
 #contact input, 
 #contact textarea {
     width: 100%;
@@ -246,36 +192,26 @@ button[type="submit"]:hover {
     border: 1px solid var(--Subtle-borders-an-separators);
     background-color: var(--app-background);
     color: var(--Hight-contrast-text);
-    font-family: inherit; /* Utilise la police du body (Della Respira) */
+    font-family: inherit;
     transition: var(--transition);
 }
-
-/* Effet quand on clique sur un champ pour écrire */
 #contact input:focus, 
 #contact textarea:focus {
     outline: none;
     border-color: var(--UI-element-border-focus-rings);
     background-color: var(--UI-element-background);
 }
-
-/* Ajustement spécifique pour la zone de message */
 #contact textarea {
     min-height: 150px;
-    resize: vertical; /* Permet à l'utilisateur d'agrandir la zone de texte uniquement de haut en bas */
+    resize: vertical;
 }
-
-/* On s'assure que le bouton prend toute la largeur du cadre */
 #contact button[type="submit"] {
     width: 100%;
     margin-top: 10px;
     padding: 15px;
     font-size: 1.1rem;
 }
-
-/* =========================================
-   7. SECTION À PROPOS
-   ========================================= */
-
+/* 7. SECTION À PROPOS */
 .about-container {
     display: flex;
     align-items: center;
@@ -283,24 +219,20 @@ button[type="submit"]:hover {
     max-width: 900px;
     margin: 0 auto;
 }
-
 .about-photo {
     width: 200px;
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--Solid-background);
-    flex-shrink: 0; /* Empêche la photo de rétrécir */
+    flex-shrink: 0;
     box-shadow: 0 0 20px rgba(124, 226, 254, 0.2);
 }
-
 .about-text {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
 }
-
-/* Responsive : photo au-dessus du texte sur mobile */
 @media (max-width: 600px) {
     .about-container {
         flex-direction: column;
@@ -308,11 +240,7 @@ button[type="submit"]:hover {
         text-align: center;
     }
 }
-
-/* =========================================
-   8. BOUTON CV
-   ========================================= */
-
+/* 8. BOUTON CV */
 .btn-cv {
     display: inline-flex;
     align-items: center;
@@ -327,24 +255,17 @@ button[type="submit"]:hover {
     transition: var(--transition);
     white-space: nowrap;
 }
-
 .btn-cv:hover {
     background-color: var(--Solid-background);
     color: var(--app-background);
 }
-
-/* Version grande pour le hero */
 .btn-cv--large {
     margin-top: 1.5rem;
     padding: 12px 28px;
     font-size: 1.1rem;
     border-radius: 10px;
 }
-
-/* =========================================
-   9. BARRE DE LANGUE
-   ========================================= */
-
+/* 9. BARRE DE LANGUE */
 #lang-toggle {
     background: none;
     border: 1px solid var(--Subtle-borders-an-separators);
@@ -356,21 +277,15 @@ button[type="submit"]:hover {
     transition: var(--transition);
     white-space: nowrap;
 }
-
 #lang-toggle:hover {
     background-color: var(--UI-element-background);
     border-color: var(--UI-element-border-focus-rings);
     color: var(--Solid-background);
 }
-
-/* =========================================
-   10. SECTION COMPÉTENCES
-   ========================================= */
-
+/* 10. SECTION COMPÉTENCES */
 #competences {
     text-align: center;
 }
-
 .skills-container {
     display: flex;
     flex-direction: column;
@@ -378,7 +293,6 @@ button[type="submit"]:hover {
     max-width: 900px;
     margin: 0 auto;
 }
-
 .skills-category h3 {
     font-size: 1rem;
     color: var(--Low-contrast-text);
@@ -386,14 +300,12 @@ button[type="submit"]:hover {
     letter-spacing: 2px;
     margin-bottom: 1rem;
 }
-
 .skills-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: center;
 }
-
 .skill-badge {
     display: flex;
     flex-direction: column;
@@ -407,29 +319,22 @@ button[type="submit"]:hover {
     transition: var(--transition);
     cursor: default;
 }
-
 .skill-badge:hover {
     background: var(--UI-element-background);
     border-color: var(--Solid-background);
     transform: translateY(-4px);
     box-shadow: 0 0 15px rgba(124, 226, 254, 0.15);
 }
-
 .skill-badge img {
     width: 40px;
     height: 40px;
     object-fit: contain;
 }
-
 .skill-badge span {
     font-size: 0.85rem;
     color: var(--Low-contrast-text);
 }
-
-/* =========================================
-   11. PAGE DE REMERCIEMENT
-   ========================================= */
-
+/* 11. PAGE DE REMERCIEMENT */
 .thankyou-page {
     min-height: 100vh;
     display: flex;
@@ -437,7 +342,6 @@ button[type="submit"]:hover {
     justify-content: center;
     padding: 2rem;
 }
-
 .thankyou-card {
     background: var(--Subtle-Background);
     border: 1px solid var(--Subtle-borders-an-separators);
@@ -453,34 +357,99 @@ button[type="submit"]:hover {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
     animation: fadeInUp 0.6s ease-out;
 }
-
 .thankyou-icon {
     font-size: 3.5rem;
     animation: bounce 1s ease infinite alternate;
 }
-
 .thankyou-card h1 {
     font-size: 2rem;
 }
-
 .thankyou-card p {
     color: var(--Low-contrast-text);
     line-height: 1.7;
 }
-
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(30px); }
     to   { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes bounce {
     from { transform: translateY(0);   }
     to   { transform: translateY(-8px); }
 }
-
-/* =========================================
-    SOURCES ET LIENS EXTERNES
-   ========================================= */
-
+/* 12. SECTION PROJETS - MENU */
+.projects-menu {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+.project-tab {
+    background: none;
+    border: 1px solid var(--Subtle-borders-an-separators);
+    border-radius: 8px;
+    padding: 10px 24px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--Low-contrast-text);
+    transition: var(--transition);
+}
+.project-tab:hover {
+    background-color: var(--UI-element-background);
+    border-color: var(--UI-element-border-focus-rings);
+    color: var(--Solid-background);
+}
+.project-tab.active {
+    background-color: var(--UI-element-background);
+    border-color: var(--Solid-background);
+    color: var(--Solid-background);
+}
+.project-card {
+    display: none;
+    max-width: 600px;
+    margin: 0 auto;
+    animation: fadeInUp 0.4s ease-out;
+}
+.project-card.active {
+    display: block;
+}
+.project-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+.project-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+}
+.project-tags span {
+    background: var(--UI-element-background);
+    border: 1px solid var(--Subtle-borders-an-separators);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    color: var(--Low-contrast-text);
+}
+.project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.project-links a {
+    color: var(--Solid-background);
+    text-decoration: none;
+    border: 1px solid var(--Solid-background);
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+.project-links a:hover {
+    background-color: var(--Solid-background);
+    color: var(--app-background);
+}
 /* font : realtime colors */
 /* color : Radix colors */

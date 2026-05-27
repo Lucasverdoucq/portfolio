@@ -3,10 +3,11 @@
    ========================================= */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault(); 
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth' 
-        });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target)
+            return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
     });
 });
 
@@ -20,7 +21,7 @@ homeButton.addEventListener('click', (e) => {
 });
 
 /* =========================================
-   2. ANIMATIONS AU DEFILEMENT (Intersection Observer)
+   2. ANIMATIONS AU DEFILEMENT
    ========================================= */
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -29,8 +30,6 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, { threshold: 0.1 });
-
-// Applique l'observateur aux éléments ciblés
 document.querySelectorAll('section, article').forEach(el => {
     el.classList.add('reveal');
     observer.observe(el);
@@ -44,7 +43,7 @@ contactForm.addEventListener('submit', (e) => {
     const email = document.getElementById('email').value;
 
     if (!email.includes('@') || !email.includes('.') || email.startsWith('@') || email.endsWith('@') || email.startsWith('.') || email.endsWith('.')) {
-        e.preventDefault(); // Bloque l'envoi si invalide
+        e.preventDefault();
         alert('Oups ! Ton adresse email ne semble pas valide.');
     }
 });
@@ -53,27 +52,16 @@ contactForm.addEventListener('submit', (e) => {
    4. GESTION DU THEME (Dark / Light)
    ========================================= */
 const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
 
-// Vérifier et appliquer le thème sauvegardé
-const currentTheme = localStorage.getItem('theme');
-if (currentTheme) {
-    body.classList.add(currentTheme);
+if (localStorage.getItem('theme') === 'light-theme') {
+    document.body.classList.add('light-theme');
 }
 
-// Changement de thème au clic
 themeToggle.addEventListener('click', () => {
-    body.classList.toggle('light-theme');
-
-    if (currentTheme === 'light-theme') {
-        document.querySelector('.icon-moon').style.display = 'none';
-        document.querySelector('.icon-sun').style.display = 'block';
-    }
+    document.body.classList.toggle('light-theme');
+    const isLight = document.body.classList.contains('light-theme');
+    localStorage.setItem('theme', isLight ? 'light-theme' : '');
 });
-
-/* =========================================
-   5. GESTION DE LA LANGUE (Français / Anglais)
-   ========================================= */
 
 /* =========================================
    5. GESTION DE LA LANGUE (FR / EN)
@@ -90,14 +78,19 @@ const translations = {
         "about.title": "À propos",
         "about.p1": "Je suis un étudiant à Epitech, passionné par la création et la résolution de problèmes complexes.",
         "about.p2": "Je me spécialise dans le développement web et les jeux vidéo.",
-        "about.p3": "J'ai débuté le code en recréant des petits jeux et en codant avec mon grand frère.",
-        "about.p4": "Je suis toujours à la recherche de nouvelles opportunités pour apprendre et grandir en tant que développeur.",
-        "about.p5": "Mon objectif actuel est de trouver un stage pour acquérir plus d'expérience.",
+        "about.p3": "Epitech m'a permis d'apprendre de nouvelles technologies en un court laps de temps.",
+        "about.p4": "J'ai débuté le code en recréant des petits jeux et en codant avec mon grand frère.",
+        "about.p5": "Je suis toujours à la recherche de nouvelles opportunités pour apprendre et grandir en tant que développeur.",
+        "about.p6": "Mon objectif actuel est de trouver un stage pour acquérir plus d'expérience.",
         "projects.title": "Mes Projets",
-        "projects.wolf.title": "Wolf3D (en cours)",
+        "projects.wolf.title": "Wolf3D",
         "projects.wolf.desc": "Un jeu en 2.5D inspiré du classique Wolfenstein 3D, développé en C avec la librairie SFML. Ce projet est un sujet de l'école.",
+        "projects.42sh.title": "42sh",
+        "projects.42sh.desc": "Un shell minimaliste développé en C, inspiré du shell de Unix. Ce projet est un sujet de l'école.",
+        "projects.p3.title": "Projet 3",
+        "projects.p3.desc": "Description de ton troisième projet.",
         "projects.code": "Voir le code",
-        "projects.demo": "Démo live",
+        "nav.skills": "Compétences",
         "skills.title": "Compétences",
         "skills.languages": "Langages",
         "skills.tools": "Outils",
@@ -121,14 +114,20 @@ const translations = {
         "about.title": "About me",
         "about.p1": "I'm a student at Epitech, passionate about creation and solving complex problems.",
         "about.p2": "I specialize in web development and video games.",
-        "about.p3": "I started coding by recreating small games and coding alongside my older brother.",
-        "about.p4": "I'm always looking for new opportunities to learn and grow as a developer.",
-        "about.p5": "My current goal is to find an internship to gain more experience.",
+        "about.p3": "Epitech has allowed me to learn new technologies in a short amount of time.",
+        "about.p4": "I started coding by recreating small games and coding alongside my older brother.",
+        "about.p5": "I'm always looking for new opportunities to learn and grow as a developer.",
+        "about.p6": "My current goal is to find an internship to gain more experience.",
         "projects.title": "My Projects",
-        "projects.wolf.title": "Wolf3D (in progress)",
+        "projects.wolf.title": "Wolf3D",
         "projects.wolf.desc": "A 2.5D game inspired by the classic Wolfenstein 3D, developed in C with the SFML library. This project is a school assignment.",
+        "projects.42sh.title": "42sh",
+        "projects.42sh.desc": "A minimalistic shell developed in C, inspired by the Unix shell. This project is a school assignment.",
+        "projects.p3.title": "Project 3",
+        "projects.p3.desc": "Description of your third project.",
         "projects.code": "View code",
         "projects.demo": "Live demo",
+        "nav.skills": "Skills",
         "skills.title": "Skills",
         "skills.languages": "Languages",
         "skills.tools": "Tools",
@@ -148,29 +147,33 @@ const langToggle = document.getElementById('lang-toggle');
 let currentLang = localStorage.getItem('lang') || 'fr';
 
 function applyLang(lang) {
-    // Traduit les textes
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang][key]) el.textContent = translations[lang][key];
     });
-
-    // Traduit les placeholders
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         const key = el.getAttribute('data-i18n-placeholder');
         if (translations[lang][key]) el.placeholder = translations[lang][key];
     });
-
-    // Met à jour le bouton et la balise <html>
     langToggle.textContent = lang === 'fr' ? '🇫🇷 Français' :'🇬🇧 English';
     document.documentElement.lang = lang;
     localStorage.setItem('lang', lang);
     currentLang = lang;
 }
-
-// Applique la langue sauvegardée au chargement
 applyLang(currentLang);
-
-// Bascule au clic
 langToggle.addEventListener('click', () => {
     applyLang(currentLang === 'fr' ? 'en' : 'fr');
+});
+
+/* =========================================
+   6. MENU DE SÉLECTION DE PROJETS
+   ========================================= */
+
+document.querySelectorAll('.project-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.project-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.project-card').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('project-' + tab.dataset.project).classList.add('active');
+    });
 });

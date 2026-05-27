@@ -1,90 +1,112 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-W2Z23STJMG"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-W2Z23STJMG');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Portfolio | Développeur Web</title>
     <meta name="description" content="Découvrez mes projets de développement web et mon expertise.">
-    
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Della+Respira&family=Rokkitt:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    
-
 </head>
 <body>
     <header>
         <div class="header-content">
             <a href="#" id="back-to-top-home" aria-label="Retour en haut">🏠</a>
-
             <nav>
                 <ul>
                     <li><a href="#a-propos" data-i18n="nav.about">À propos</a></li>
                     <li><a href="#projets" data-i18n="nav.projects">Projets</a></li>
+                    <li><a href="#competences" data-i18n="nav.skills">Compétences</a></li>
                     <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
                 </ul>
             </nav>
-
             <button id="lang-toggle" aria-label="Changer la langue">🇬🇧 English</button>
-
             <button id="theme-toggle" aria-label="Changer le thème">
                 <span class="icon-moon">🌙</span>
                 <span class="icon-sun" style="display: none;">☀️</span>
             </button>
         </div>
     </header>
-
     <main>
         <section id="hero">
             <h1 data-i18n="hero.title">Bonjour, je suis Lucas VERDOUCQ</h1>
             <p data-i18n="hero.subtitle">Étudiant à Epitech Lille.</p>
         </section>
-
         <section id="a-propos">
             <h2 data-i18n="about.title">À propos</h2>
             <div class="about-container">
-                <img src="assets/photo.jpg" alt="Photo de Lucas VERDOUCQ" class="about-photo">
+                <img src="assets/profile.jpg" alt="Photo de Lucas VERDOUCQ" class="about-photo">
                 <div class="about-text">
                     <p data-i18n="about.p1">Je suis un étudiant à Epitech, passionné par la création et la résolution de problèmes complexes.</p>
                     <p data-i18n="about.p2">Je me spécialise dans le développement web et les jeux vidéo.</p>
-                    <p data-i18n="about.p3">J'ai débuté le code en recréant des petits jeux et en codant avec mon grand frère.</p>
-                    <p data-i18n="about.p4">Je suis toujours à la recherche de nouvelles opportunités pour apprendre et grandir en tant que développeur.</p>
-                    <p data-i18n="about.p5">Mon objectif actuel est de trouver un stage pour acquérir plus d'expérience.</p>
+                    <p data-i18n="about.p3">Epitech m'a permis d'apprendre de nouvelles technologies en un court laps de temps.</p>
+                    <p data-i18n="about.p4">J'ai débuté le code en recréant des petits jeux et en codant avec mon grand frère.</p>
+                    <p data-i18n="about.p5">Je suis toujours à la recherche de nouvelles opportunités pour apprendre et grandir en tant que développeur.</p>
+                    <p data-i18n="about.p6">Mon objectif actuel est de trouver un stage pour acquérir plus d'expérience.</p>
                 </div>
             </div>
             <a href="assets/CV_Lucas_VERDOUCQ.pdf" download class="btn-cv btn-cv--large">
                 📄 <span data-i18n="nav.cv">Télécharger mon CV</span>
             </a>
         </section>
-
         <section id="projets">
-            <h2 data-i18n="projects.title">Mes Projets</h2>
-            <div class="projects-grid">
-                <article>
-                    <h3 data-i18n="projects.wolf.title">Wolf3D (en cours)</h3>
-                    <img src="assets/projet1.webp" alt="Capture d'écran du projet Wolf3D">
-                    <p data-i18n="projects.wolf.desc">Un jeu en 2.5D inspiré du classique Wolfenstein 3D, développé en C avec la librairie SFML. Ce projet est un sujet de l'école.</p>
-                    <a href="#" data-i18n="projects.code">Voir le code</a>
-                    <a href="#" data-i18n="projects.demo">Démo live</a>
-                </article>
+    <h2 data-i18n="projects.title">Mes Projets</h2>
+    <div class="projects-menu">
+        <button class="project-tab active" data-project="wolf3d">Wolf3D</button>
+        <button class="project-tab" data-project="42sh">42sh</button>
+        <button class="project-tab" data-project="mytop">MyTop</button>
+    </div>
+    <div class="projects-display">
+        <article class="project-card active" id="project-wolf3d">
+            <h3 data-i18n="projects.wolf.title">Wolf3D</h3>
+            <img src="assets/screen/wolf3d_screen.png" alt="Capture d'écran du projet Wolf3D">
+            <p data-i18n="projects.wolf.desc">Un jeu en 2.5D inspiré du classique Wolfenstein 3D, développé en C avec la librairie SFML. Ce projet est un sujet de l'école.</p>
+            <div class="project-tags">
+                <span>C</span>
+                <span>SFML</span>
+                <span>Jeu vidéo</span>
             </div>
-        </section>
-
+            <div class="project-links">
+                <a href="https://github.com/Lucasverdoucq/Wolf3D" target="_blank" rel="noopener noreferrer" data-i18n="projects.code">Voir le code</a>
+            </div>
+        </article>
+        <article class="project-card" id="project-42sh">
+            <h3 data-i18n="projects.42sh.title">42sh</h3>
+            <img src="assets/screen/42sh_screen.png" alt="Capture d'écran du projet 42sh">
+            <p data-i18n="projects.42sh.desc">Un shell minimaliste développé en C, inspiré du shell de Unix. Ce projet est un sujet de l'école.</p>
+            <div class="project-tags">
+                <span>C</span>
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/Lucasverdoucq/42sh" target="_blank" rel="noopener noreferrer" data-i18n="projects.code">Voir le code</a>
+            </div>
+        </article>
+        <article class="project-card" id="project-mytop">
+            <h3 data-i18n="projects.mytop.title">MyTop</h3>
+            <img src="assets/screen/mytop_screen.png" alt="Capture d'écran du projet MyTop">
+            <p data-i18n="projects.mytop.desc">Un gestionnaire de tâches en ligne de commande développé en C. Ce projet est un sujet de l'école.</p>
+            <div class="project-tags">
+                <span>C</span>
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/Lucasverdoucq/mytop" target="_blank" rel="noopener noreferrer" data-i18n="projects.code">Voir le code</a>
+            </div>
+        </article>
+    </div>
+</section>
         <section id="competences">
             <h2 data-i18n="skills.title">Compétences</h2>
             <div class="skills-container">
-
                 <div class="skills-category">
                     <h3 data-i18n="skills.languages">Langages</h3>
                     <div class="skills-grid">
@@ -106,7 +128,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="skills-category">
                     <h3 data-i18n="skills.tools">Outils</h3>
                     <div class="skills-grid">
@@ -130,34 +151,27 @@
                 </div>
             </div>
         </section>
-
         <section id="contact">
             <h2 data-i18n="contact.title">Me contacter</h2>
             <form action="https://formspree.io/f/xeepapga" method="POST">
                 <label for="name" data-i18n="contact.name">Nom :</label>
                 <input type="text" id="name" name="name" autocomplete="name"
                        data-i18n-placeholder="contact.namePlaceholder" placeholder="Nom Prénom" required>
-
                 <label for="email" data-i18n="contact.email">Email :</label>
                 <input type="email" id="email" name="email" autocomplete="email"
                        data-i18n-placeholder="contact.emailPlaceholder" placeholder="ex: email@gmail.com" required>
-
                 <label for="message" data-i18n="contact.message">Message :</label>
                 <textarea id="message" name="message"
                           data-i18n-placeholder="contact.messagePlaceholder" placeholder="Ton message" required></textarea>
-
                 <input type="hidden" name="_next" value="html/merci.html">
                 <input type="text" name="_gotcha" style="display:none">
-
                 <button type="submit" data-i18n="contact.send">Envoyer</button>
             </form>
         </section>
     </main>
-
     <footer>
         <p data-i18n="footer">© 2026 Lucas VERDOUCQ. Tous droits réservés.</p>
     </footer>
-
     <script src="js/script.js"></script>
 </body>
 </html>
