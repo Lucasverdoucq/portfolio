@@ -25,9 +25,8 @@ homeButton.addEventListener('click', (e) => {
    ========================================= */
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting)
             entry.target.classList.add('reveal-visible');
-        }
     });
 }, { threshold: 0.1 });
 document.querySelectorAll('section, article').forEach(el => {
@@ -41,32 +40,25 @@ document.querySelectorAll('section, article').forEach(el => {
 const contactForm = document.querySelector('form');
 contactForm.addEventListener('submit', (e) => {
     const email = document.getElementById('email').value;
-
     if (!email.includes('@') || !email.includes('.') || email.startsWith('@') || email.endsWith('@') || email.startsWith('.') || email.endsWith('.')) {
         e.preventDefault();
         alert('Oups ! Ton adresse email ne semble pas valide.');
     }
 });
-
 /* =========================================
    4. GESTION DU THEME (Dark / Light)
    ========================================= */
 const themeToggle = document.getElementById('theme-toggle');
-
-if (localStorage.getItem('theme') === 'light-theme') {
+if (localStorage.getItem('theme') === 'light-theme')
     document.body.classList.add('light-theme');
-}
-
 themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('light-theme');
     const isLight = document.body.classList.contains('light-theme');
     localStorage.setItem('theme', isLight ? 'light-theme' : '');
 });
-
 /* =========================================
    5. GESTION DE LA LANGUE (FR / EN)
    ========================================= */
-
 const translations = {
     fr: {
         "nav.about":   "À propos",
@@ -142,18 +134,18 @@ const translations = {
         "footer": "© 2026 Lucas VERDOUCQ. All rights reserved."
     }
 };
-
 const langToggle = document.getElementById('lang-toggle');
 let currentLang = localStorage.getItem('lang') || 'fr';
-
 function applyLang(lang) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) el.textContent = translations[lang][key];
+        if (translations[lang][key])
+            el.textContent = translations[lang][key];
     });
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         const key = el.getAttribute('data-i18n-placeholder');
-        if (translations[lang][key]) el.placeholder = translations[lang][key];
+        if (translations[lang][key])
+            el.placeholder = translations[lang][key];
     });
     langToggle.textContent = lang === 'fr' ? '🇫🇷 Français' :'🇬🇧 English';
     document.documentElement.lang = lang;
@@ -164,11 +156,9 @@ applyLang(currentLang);
 langToggle.addEventListener('click', () => {
     applyLang(currentLang === 'fr' ? 'en' : 'fr');
 });
-
 /* =========================================
    6. MENU DE SÉLECTION DE PROJETS
    ========================================= */
-
 document.querySelectorAll('.project-tab').forEach(tab => {
     tab.addEventListener('click', () => {
         document.querySelectorAll('.project-tab').forEach(t => t.classList.remove('active'));
